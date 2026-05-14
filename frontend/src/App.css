@@ -1,0 +1,31 @@
+.docx-wrapper{
+  width:700px !important;
+  margin: 0 auto !important;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  overflow-y: auto;
+  background:white !important;
+}
+
+.docx-wrapper .docx{
+  background:white !important;
+  width:100% !important;
+  max-width:100% !important;
+  padding:0 !important;
+  margin:0 !important;
+}
+.docx-wrapper section {
+  width: 900px !important;
+  max-width: 900px !important;
+  background: white;
+  padding: 60px 70px !important;
+  box-sizing: border-box;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  margin-bottom: 30px;
+}
+
+.docx-wrapper *{
+  box-sizing:border-box;
+  max-width:100% !important;
+}
