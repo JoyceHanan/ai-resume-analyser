@@ -92,16 +92,24 @@ const handleDeleteResume=async (resumeId)=>{
   }
 };
  //GET ANALYSIS OF CLICKED RESUME 
-const handleOpenResume=async(resumeId)=>{
+const handleDeleteResume=async(resumeId)=>{
   try{
-    const res=await axios.get(`/analysis-api/${resumeId}`,{withCredentials:true});
-    localStorage.setItem("resumeId",resumeId);
-    localStorage.setItem("analysis",JSON.stringify(res.data.analysis));
-    navigate("/dashboard");
+    await axios.delete(`/analysis-api/resume/${resumeId}`,{withCredentials:true});
+    await axios.delete(`/resume-api/${resumeId}`,{withCredentials:true});
+    setResumes(
+      resumes.filter((resume)=>resume._id!==resumeId));
+    const currentResumeId=localStorage.getItem("resumeId");
+    if(currentResumeId===resumeId){
+      localStorage.removeItem("resumeId");
+      localStorage.removeItem("analysis");}
   }
   catch(err){
     console.log(err);
+    setError(
+      "Failed to delete resume"
+    );
   }
+
 };
   return (
     <div className={pageWrapper}>
