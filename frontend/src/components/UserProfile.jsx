@@ -98,6 +98,7 @@ const handleDeleteResume=async(resumeId)=>{
       "Failed to delete resume"
     );
   }
+}
  //GET ANALYSIS OF CLICKED RESUME 
 const handleOpenResume=async(resumeId)=>{
   try{
