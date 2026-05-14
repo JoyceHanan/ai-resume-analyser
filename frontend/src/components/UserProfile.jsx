@@ -81,17 +81,6 @@ useEffect(()=>{
   Promise.all([fetchUser(),fetchHistory(),fetchUserResumes()])
   .finally(()=>{setLoading(false);});
 },[]);
-const handleDeleteResume=async (resumeId)=>{
-  try{
-    await axios.delete(`/resume-api/${resumeId}`,{withCredentials:true});
-    setResumes(resumes.filter((resume)=>resume._id!==resumeId));
-   }
-  catch(err){
-    console.log(err);
-    setError("Failed to delete resume");
-  }
-};
- //GET ANALYSIS OF CLICKED RESUME 
 const handleDeleteResume=async(resumeId)=>{
   try{
     await axios.delete(`/analysis-api/resume/${resumeId}`,{withCredentials:true});
@@ -109,7 +98,17 @@ const handleDeleteResume=async(resumeId)=>{
       "Failed to delete resume"
     );
   }
-
+ //GET ANALYSIS OF CLICKED RESUME 
+const handleOpenResume=async(resumeId)=>{
+  try{
+    const res=await axios.get(`/analysis-api/${resumeId}`,{withCredentials:true});
+    localStorage.setItem("resumeId",resumeId);
+    localStorage.setItem("analysis",JSON.stringify(res.data.analysis));
+    navigate("/dashboard");
+  }
+  catch(err){
+    console.log(err);
+  }
 };
   return (
     <div className={pageWrapper}>
